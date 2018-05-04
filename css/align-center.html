@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .align-center {
+      width: 200px;
+      height: 200px;
+      line-height: 200px;
+      text-align: center;
+      background-color: pink;
+      border: 2px solid green;
+    }
+
+    .align-1 {
+      margin: 0 auto;
+      display: none;
+    }
+
+    .align-2 {
+      display: none;
+      position: absolute;
+      margin: auto;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .align-3 {
+      display: none;
+      position: relative;
+      /* 相对定位或者决定定位都是可以的 */
+      top: 50%;
+      left: 50%;
+      margin: -100px 0 0 -100px;
+    }
+
+    .align-4 {
+      /* display: none; */
+      position: absolute;
+      /* 相对定位或绝对定位均可 */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      /* 方便看效果 */
+    }
+    /* 另外，还可以是使用flex布局来实现 */
+  </style>
+</head>
+
+<body>
+  <div class="align-center align-1">1</div>
+  <div class="align-center align-2">2</div>
+  <div class="align-center align-3">3</div>
+  <div class="align-center align-4">4</div>
+</body>
+
+</html>

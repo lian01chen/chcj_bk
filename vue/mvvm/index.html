@@ -1,0 +1,48 @@
+<!-- vue 双向绑定原理 参考链接：https://github.com/DMQ/mvvm-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="js/observer.js"></script>
+  <script src="js/watcher.js"></script>
+  <script src="js/compile.js"></script>
+  <script src="js/mvvm.js"></script>
+</head>
+<body>
+<div id="vue-app">
+  <label for="inputText">input标签：
+    <input id="inputText" type="text" v-model="word"/>
+  </label>
+  <p>{{word}}</p>
+  <button v-on:click="changeModel">清除数据</button>
+</div>
+<div id="simple">
+  <input type="text" id="a"/>
+  <span id="b"></span>
+</div>
+</body>
+<!--<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>-->
+<script>
+  let vm = new MVVM({
+    el:'#vue-app',
+    data:{
+      word:'111'
+    },
+    methods:{
+      changeModel:function(){
+        alert(1)
+        console.log(this.word,112)
+      }
+    },
+    // computed:{
+    //   getWord(){
+    //     return 123
+    //   }
+    // }
+  })
+</script>
+</html>

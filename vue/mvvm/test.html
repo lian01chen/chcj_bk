@@ -1,0 +1,164 @@
+<!--参考https://github.com/bison1994/two-way-data-binding-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<div id="app">
+  <input type="text" v-model="text"/>
+  {{ text }}
+</div>
+</body>
+<script>
+  /**
+   * 数据初始化绑定,解析dom中绑定指令和识别{{}}
+   * @param node
+   * @param vm
+   */
+  function compile(node, vm) {
+    let reg = /\{\{(.*)\}\}/
+    // 节点元素类型
+    if (node.nodeType === 1) {
+      // node.value = 'sdfsfs'
+      let attrs = node.attributes
+      for (let i = 0; i < attrs.length; i++) {
+        if (attrs[i].nodeName == 'v-model') {
+          let name = attrs[i].nodeValue // text,绑定到text了
+          node.addEventListener('input', function (e) {
+            // 监听input输入框，给vue的data对象赋值，进而触发属性set方法
+            vm[name] = e.target.value // todo 这里写法有点不一样，没有直接在vm身上写属性
+          })
+          node.value = vm[name]
+          new Watcher(vm, node, name, 'input')
+          node.removeAttribute('v-model') // attrs[i].nodeName
+        }
+      }
+    }
+    // {{}}节点
+    if (node.nodeType === 3) {
+      if (reg.test(node.nodeValue)) {
+        let matchArr = node.nodeValue.match(reg)
+        let name = matchArr[1].trim()
+        new Watcher(vm, node, name, 'text')
+        node.nodeValue = vm[name]
+      }
+    }
+  }
+
+  /**
+   * 构造dom片段
+   * @param node vue容器节点
+   * @param vm  vm Vus实里对象
+   */
+  function nodeToFragment(node, vm) {
+    let flag = document.createDocumentFragment(),
+      child
+    while (child = node.firstChild) {
+      compile(child, vm)
+      flag.appendChild(child)
+    }
+    return flag
+  }
+
+  /**
+   * 执行响应式,将data属性绑到vm身上
+   * @param
+   * @param
+   */
+  // todo 注释没完成
+  function defineReactive(vmObj, key, val) {
+    let dep = new Dep()
+    Object.defineProperty(vmObj, key, {
+      set: function (newVal) {
+        if (newVal === val) return
+        val = newVal
+        dep.notify()
+        console.log('vmobj', vmObj, val)
+      },
+      get: function () {
+        if (Dep.target) dep.addSub(Dep.target)
+        // console.log('defineReactive',dep,Dep,)
+        return val
+      }
+    })
+  }
+
+  // todo 这个方法接收 参数是？ 作用是？
+  function observe(dataObj, vm) {
+    Object.keys(dataObj).forEach(function (key) {
+      defineReactive(vm, key, dataObj[key])
+    })
+  }
+
+  /**
+   * 监听数据过程中为data中的每个属性生成一个主题对象dep
+   * 在编译html过程中，会为每个数据绑定相关的节点生成一个订阅者watcher， watcher会将自己添加到相应属性的dep中
+   * @param
+   * @param
+   */
+  function Watcher(vm, node, name, nodeType) {
+    Dep.target = this
+    this.name = name
+    this.node = node
+    this.nodeType = nodeType
+    this.vm = vm
+    this.update()
+    Dep.target = null
+  }
+
+  Watcher.prototype = {
+    update: function () {
+      this.get()
+      if (this.nodeType === 'input') {
+        this.node.value = this.value
+      } else {
+        this.node.nodeValue = this.value
+      }
+    },
+    get: function () {
+      this.value = this.vm[this.name]
+    }
+  }
+
+  function Dep() {
+    this.subs = []
+  }
+
+  Dep.prototype = {
+    addSub: function (sub) {
+      this.subs.push(sub)
+    },
+    notify: function () {
+      this.subs.forEach(function (sub) {
+        sub.update()
+      })
+    }
+  }
+
+  /**
+   * Vue 构造函数
+   * @param options
+   * @constructor
+   */
+  function Vue(options) {
+    this.data = options.data
+    let id = options.el
+    observe(this.data, this)
+    let dom = nodeToFragment(document.getElementById(id), this)
+    document.getElementById(id).appendChild(dom)
+  }
+
+  // 实例化一个vue对象
+  var vm = new Vue({
+    el: 'app',
+    data: {
+      text: 'hello world'
+    }
+  })
+</script>
+</html>
