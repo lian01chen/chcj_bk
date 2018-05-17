@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div class="ss"></div>
+</body>
+<script>
+  // 以下内容参考http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html实现
+  function addScriptTag(src){
+    let script = document.createElement('script')
+    script.setAttribute('type','text/javascript')
+    script.src = src
+    document.body.appendChild(script)
+  }
+  window.onload = function(){
+    addScriptTag('http://mlc.vip.com/mobile/common/getUserLogin?callback=foo')
+  }
+  function foo(data){
+    console.log("这里要打印一些信息了，哈哈--->",data)
+  }
+  // 服务器收到这个请求以后，会将数据放在回调函数的参数位置返回
+  // 如接口返回的js文件是如下js，就会直接执行了
+  /**
+  foo({
+    "ip": "8.8.8.8"
+  });*/
+  // TODO
+  // 由于<script>元素请求的脚本，直接作为代码运行。这时，只要浏览器定义了foo函数，该函数就会立即调用。作为参数的JSON数据被视为JavaScript对象，而不是字符串，因此避免了使用JSON.parse的步骤。
+</script>
+</html>
