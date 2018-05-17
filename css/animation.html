@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    @keyframes myfirst{
+      0%{
+        transform: rotate(0deg);
+        margin-left:0px;
+      }
+      25%{
+        transform: rotate(20deg);
+        margin-left: 0px;
+      }
+      50%{
+        transform: rotate(0deg);
+        margin-left: 400px;
+      }
+      55%{
+        transform: rotate(0deg);
+        margin-left: 400px;
+        background: #1ec7e6;
+      }
+      70%{
+        transform: rotate(0deg);
+        margin-left: 400px;
+        background: #1ec7e6;
+      }
+      100%{
+        transform: rotate(-360deg);
+        margin-left: 0px;
+      }
+    }
+    .box{
+      width: 80px;
+      height: 80px;
+      background: yellowgreen;
+    }
+    .box:hover{
+      -webkit-animation: myfirst 5s;
+      -o-animation: myfirst 5s;
+      animation: myfirst 5s;
+    }
+    /*animation:name duration timing-function delay*/
+  </style>
+</head>
+<body>
+<div class="box"></div>
+</body>
+</html>
