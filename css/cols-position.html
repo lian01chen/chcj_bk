@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+.newspaper
+{
+-moz-column-count:5; /* Firefox */
+-webkit-column-count:5; /* Safari and Chrome */
+column-count:5;
+width:400px;
+height:280px;
+border-left:1px solid black;
+border-bottom:1px solid black;
+position:relative;
+}
+div span {
+position:absolute;
+bottom:0;
+width:60px;
+left:20px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="newspaper">
+<span style="height:30%;background:#f00;">1</span>
+<span style="height:80%;background:#ddd; left:100px;">2</span>
+<span style="height:80%;background:#0fd; left:180px;">3</span>
+<span style="height:80%;background:#ff0; left:260px;">4</span>
+<span style="height:80%;background:#234; left:340px;">5</span>
+</div>
+
+</body>
+</html>

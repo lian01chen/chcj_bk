@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+.box{
+  width: 500px;
+  height: 200px;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+
+
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  
+}
+span{
+  width:40px;
+}
+.first{
+  background-color: #f00;
+  height: 30%;
+}
+.sec{
+  background-color: #ddd;
+  height: 80%;
+}
+.thr{
+  background-color: #0fd;
+  height: 70%;
+}
+.four{
+  background-color: #ff0;
+  height: 60%;
+}
+.fiv{
+  background-color: #234;
+  height: 90%;
+}
+
+</style>
+<body>
+  <div class="box">
+    <span class="first"></span>
+    <span class="sec"></span>
+    <span class="thr"></span>
+    <span class="four"></span>
+    <span class="fiv"></span>
+  </div>
+</body>
+</html>
