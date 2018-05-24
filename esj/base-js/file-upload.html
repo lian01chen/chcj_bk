@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<label >
+请上传附件
+  <input type="file" onchange="checkField(this)" title="233" title="sssss" id="test">
+</label>
+</body>
+<script>
+  function checkField(ev){
+    // 之前onchange方法一直不起作用，传入this之后就可以了
+    // 一直拿不到files对象，因为一直采用ev.target.files方式，其实ev已经是target了
+    console.log(ev,ev.files,ev.target)
+  }
+</script>
+</html>
