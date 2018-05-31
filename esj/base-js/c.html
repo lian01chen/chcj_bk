@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>打印1</div>
+  <div>打印2</div>
+  <div>打印3</div>
+</body>
+<script>
+  // let divs = document.getElementsByTagName('div')
+  // for(var i=0;i<divs.length;i++){
+  //   divs[i].addEventListener('click',()=>{
+  //     console.log(i)
+  //   })
+  // }
+  var divs = document.getElementsByTagName('div');
+  for (var i = 0; i < divs.length; i++) {
+    (function (num) {
+      divs[i].addEventListener('click', function () {
+        console.log(num)
+      }, false);
+    })(i);
+  }
+</script>
+
+</html>
