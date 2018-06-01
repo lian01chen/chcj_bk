@@ -7,52 +7,108 @@
   <title>Document</title>
 </head>
 <style>
-.box{
-  width: 500px;
-  height: 200px;
-  display: -webkit-flex; /* Safari */
-  display: flex;
-  border-bottom: 1px solid black;
-  border-left: 1px solid black;
+  .box {
+    width: 500px;
+    height: 200px;
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
 
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
 
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-end;
-  
-}
-span{
-  width:40px;
-}
-.first{
-  background-color: #f00;
-  height: 30%;
-}
-.sec{
-  background-color: #ddd;
-  height: 80%;
-}
-.thr{
-  background-color: #0fd;
-  height: 70%;
-}
-.four{
-  background-color: #ff0;
-  height: 60%;
-}
-.fiv{
-  background-color: #234;
-  height: 90%;
-}
-
+  }
+  span {
+    width: 40px;
+  }
+  .first {
+    background-color: #f00;
+    height: 30%;
+  }
+  .sec {
+    background-color: #ddd;
+    height: 80%;
+  }
+  .thr {
+    background-color: #0fd;
+    height: 70%;
+  }
+  .four {
+    background-color: #ff0;
+    height: 60%;
+  }
+  .fiv {
+    background-color: #234;
+    height: 90%;
+  }
+  .container{
+    margin-top: 100px;
+    width:400px;
+    height: 200px;
+    background: aliceblue;
+  }
+  .div1{
+    width: 50%;
+    height: 100%;
+    background: pink;
+  }
+  .div2,.div3{
+    width:50%;
+    height: 50%;
+  }
+  .div2{
+    background: red;
+  }
+  .div3{
+    background: green;
+  }
+  .text-content{
+    width: 400px;
+    height: 100px;
+    background: gray;
+    margin-top: 230px;
+    display: flex;
+  }
+  .div11{
+    background: pink;
+    width: 50%;
+    height: 100%;
+    flex-shrink: 0;
+  }
+  .text{
+    background: yellowgreen;
+    margin: 0 auto;
+  }
+  .div22{
+    background: red;
+    opacity: 0.5;
+  }
 </style>
 <body>
-  <div class="box">
-    <span class="first"></span>
-    <span class="sec"></span>
-    <span class="thr"></span>
-    <span class="four"></span>
-    <span class="fiv"></span>
+<div class="box">
+  <span class="first"></span>
+  <span class="sec"></span>
+  <span class="thr"></span>
+  <span class="four"></span>
+  <span class="fiv"></span>
+</div>
+<!--让三个小方块铺满矩形-->
+<div class="container">
+  <div class="div1"></div>
+  <div class="div2"></div>
+  <div class="div3"></div>
+</div>
+
+<div class="text-content">
+  <div class="div11"></div>
+  <div class="div22">
+    <p class="text">ksdflaslfdksadflsfasgggggggggggggggjaslfkjskldfjlksjdl sf d dsfsfskdjlkjflsdjfklsjfkldsf</p>
   </div>
+</div>
 </body>
+<style>
+
+</style>
 </html>
