@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<div class="center-box style-4">
+  <span class="fix12px">
+    这里有有一些默认小于12px的文本，chrome默认会将小于12px的文本强制按照12px显示
+  </span>
+</div>
+<div><span>haorooms博客测试10px</span></div>
+</body>
+<style>
+  div span{
+    font-size:10px;
+    -webkit-transform:scale(0.8);
+    display:inline-block;
+  }
+</style>
+<style>
+  .fix12px{
+    font-size : 12px;
+    -webkit-transform : scale(0.84,0.84) ;
+  }
+  .center-box {
+    width: 400px;
+    height: 200px;
+    background: pink;
+  }
+  .style-1 {
+    justify-content: center;
+    align-items: center;
+  }
+  /* 这个作用的原理是啥？*/
+  .style-2 {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  /* 这个要看下，translate的作用*/
+  .style-3 {
+    position: absolute; /* 相对定位或绝对定位均可 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .style-4 {
+    position: absolute; /* 相对定位或绝对定位均可 */
+    top: 50%;
+    left: 50%;
+    margin: -100px 0 0 -200px; /* 外边距为自身宽高的一半 */
+  }
+</style>
+</html>
