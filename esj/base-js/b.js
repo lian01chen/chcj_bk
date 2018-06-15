@@ -17,3 +17,48 @@ function formatNum(num = 0) {
   }
   return float ? strArr.reverse().concat(['.'],float).join('') : strArr.reverse().join('')
 }
+
+/**
+ * 防抖，在resize，scroll等事件时可以使用
+ * @param fn
+ * @param wait
+ * @returns {Function}
+ */
+function debounce(fn,wait){
+  var timeout = null
+  return function (){
+    if(timeout !== null){
+      clearTimeout(timeout)
+    }
+    timeout = setTimeout(fn,wait)
+  }
+}
+function handle(){
+  console.log(Math.random())
+}
+window.addEventListener('scroll',debounce(handle,2000))
+
+/**
+ * 函数节流
+ * @param func
+ * @param delay
+ * @returns {Function}
+ */
+function throttle (func,delay){
+  var timer = null
+  return function (){
+    if(!timer){
+      timer = setTimeout(function(){
+        func()
+        timer = null
+      },delay)
+    }
+  }
+}
+function handle(){
+  console.log(Math.random())
+}
+// window.addEventListener('scroll',throttle(handle,1000))
+// 绑定的是throttle()执行，所以也就是绑定的throttle方法return出来的方法，这样
+// 可以利用闭包使用timer
+window.addEventListener('scroll',throttle(handle,1000))
