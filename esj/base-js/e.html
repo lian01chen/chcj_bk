@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="s1">s1
+    <div id="s2">s2</div>
+    <a href="https://www.baidu.com" target="_blank" id="a">a</a>
+  </div>
+  <script>
+    s1.addEventListener("click", function (e) {
+      console.log("s1 冒泡事件");
+    }, false);
+    s2.addEventListener("click", function (e) {
+      console.log("s2 冒泡事件");
+    }, false);
+    s1.addEventListener("click", function (e) {
+      console.log("s1 捕获事件");
+    }, true);
+    s2.addEventListener("click", function (e) {
+      console.log("s2 捕获事件");
+    }, true);
+
+    // 而且，stopImmediatePropagation 方法会阻止【该元素】后续的所有【同类型】事件
+    // a.addEventListener('click',function(e){
+    //   console.log(2222)
+    //   e.stopImmediatePropagation()
+    // })
+    a.addEventListener('mouseover',function(e){
+      console.log('mouseover') // 不会被阻止
+    })
+    a.addEventListener('click',function(e){
+      e.preventDefault() // 不会阻止console打印，但是会阻断a标签href事件,不会阻止s1的捕获和冒泡 //preventDefalut 阻止dom的默认事件
+      e.stopPropagation() // 可以阻止事件的传播 注意 stopPropagation 和stopImmediatePropagation方法的区别，可以给一个dom注册多个click事件
+      //stopPropagation只会阻止当前元素当前事件的传播，而stopImmediatePropagation会彻底阻止这个事件的传播
+      // e.stopImmediatePropagation()
+      console.log(111111,e)
+
+    })
+   
+    // 命中的节点，先注册的那个（冒泡，捕获）事件就先执行哪个事件
+    // jquery 中的onclick等事件是冒泡，源码绑定方式如下：
+    /*
+    if(elem.addEventListener){
+      elem.addEventListener(type,eventHandle,false)
+    } else if(elem.attachEvent) {
+      elem.attachEvent("on"+type,eventHandle)
+    }*/
+  </script>
+</body>
+
+</html>
