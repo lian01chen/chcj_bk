@@ -33,7 +33,7 @@
 
     .align-3 {
       display: none;
-      position: relative;
+      position: relative; /*这个需要设置父级元素的高度，否则下面的top不起作用，父级元素没有高度，百分比无论多大浏览器解析不出具体的数值*/
       /* 相对定位或者决定定位都是可以的 */
       top: 50%;
       left: 50%;
