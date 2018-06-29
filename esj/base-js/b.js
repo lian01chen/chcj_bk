@@ -62,3 +62,32 @@ function handle(){
 // 绑定的是throttle()执行，所以也就是绑定的throttle方法return出来的方法，这样
 // 可以利用闭包使用timer
 window.addEventListener('scroll',throttle(handle,1000))
+
+
+/**
+ * 单例，只能有一个实例
+ */
+let Single = function(name){
+  this.name = name
+}
+Single.prototype.getName = function(){
+  return this.name
+}
+
+let getSingleInstance = (function(name){
+  var instance = null
+  return function(name){
+    if(!instance){
+      instance = new Single(name)
+    }
+    return instance
+  } 
+})()
+
+//
+for(let i = 0;i<4;i++){
+  const v = i
+  console.log('for->',i,'v-->',v)
+}
+//这个是有作用域的，在for之外，if,for都会造成块级作用域
+console.log(i,v)
