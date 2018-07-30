@@ -36,7 +36,7 @@ const config = merge(base, {
     }),
     // generate output HTML
     new HTMLPlugin({
-      template: '../src/index.template.html'
+      template: './src/index.template.html'
     }),
     
   ]

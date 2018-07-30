@@ -80,6 +80,7 @@
         </a>
       </li>
     </ul>
+    <div>this is a vue-ssr test demo</div>
   </div>
 </template>
 

@@ -23,8 +23,8 @@ let mutations = {
 //   mutations,
 // }
 Vue.use(Vuex)
-export function createStore() {
-  return new Vuex.store({
+export default function () {
+  return new Vuex.Store({
     state,
     getters,
     actions,
