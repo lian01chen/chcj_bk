@@ -80,7 +80,7 @@
         </a>
       </li>
     </ul>
-    <div>this is a vue-ssr test demo</div>
+    <div>this is a vue-ssr demo app</div>
   </div>
 </template>
 
@@ -88,7 +88,6 @@
 export default {
   name: 'HelloWorld',
   asyncData({store , route}){
-    console.log(store,route,'@@')
     return store.dispatch('fetchItem', route.query.id)
   },
   data () {

@@ -8,7 +8,9 @@ const SWPrecachePlugin = require('sw-precache-webpack-plugin')
 
 const config = merge(base, {
   target:'web',
-  entry:'./src/entry.client.js',
+  entry:{
+    app:'./src/entry.client.js'
+  },
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/dist/',
