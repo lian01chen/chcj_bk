@@ -1,29 +1,34 @@
 <template>
-  <div id="flex">
-    <div class="cust">客户名称：{{customerNmae}}</div>
-    <span>选择时间段:</span>
-    <div><input class="time-select" v-focus type="text" value="2016-01"/></div>
-    <span>至</span>
-    <div><input class="time-select" type="text" value="2017-01"/></div>
-    <div class="button" @click="goHome">
-      确定
+  <div>
+    <div id="flex">
+      <div class="cust">客户名称：{{customerName}}</div>
+      <span>选择时间段:</span>
+      <div><input class="time-select" v-focus type="text" value="2016-01"/></div>
+      <span>至</span>
+      <div><input class="time-select" type="text" value="2017-01"/></div>
+      <div class="button" @click="goHome">
+        确定
+      </div>
     </div>
+    <div><label for="home-data">home-page-data<input type="text" id="home-data" v-model="textStr"></label></div>
   </div>
 </template>
 
 <script>
   export default {
     name: 'App',
-    data(){
+    data() {
       return {
-        customerNmae: '100003 广州市万荣商贸有限公司广州分公司'
+        customerName: '100003 广州市万荣商贸有限公司广州分公司',
+        textStr: this.inputMsg
       }
     },
-    methods:{
-      goHome(){
+    props: ['inputMsg'],
+    methods: {
+      goHome() {
         this.$router.push({
-          path:'/home',
-          query:{'aa':1}
+          path: '/home',
+          query: {'aa': 1}
         })
       }
     }
@@ -47,7 +52,7 @@
     border: 1px solid #cce4fc;
 
     .cust {
-      flex:none;
+      flex: none;
       height: 74px;
       line-height: 74px;
       flex-basis: 404px;
@@ -57,7 +62,7 @@
       display: inline-flex;
     }
     .time-select {
-      flex:none;
+      flex: none;
       width: 202px;
       padding: 8px;
     }

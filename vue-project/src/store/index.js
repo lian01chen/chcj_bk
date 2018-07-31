@@ -10,7 +10,6 @@ let getters = {
 
 let actions = {
   fetchItem ( {commit}, id){
-    console.log(111)
     return new Promise(( resolve,reject)=>{
       resolve(1)
     }).then(item=>{
