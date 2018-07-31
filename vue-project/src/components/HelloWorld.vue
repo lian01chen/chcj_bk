@@ -87,6 +87,10 @@
 <script>
 export default {
   name: 'HelloWorld',
+  asyncData({store , route}){
+    console.log(store,route,'@@')
+    return store.dispatch('fetchItem', route.query.id)
+  },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

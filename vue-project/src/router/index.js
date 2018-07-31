@@ -20,11 +20,9 @@ const routeParams = {
     component: Flex,
     meta: {title: 'flex test'}
   },{
-    path:'*',
-    name:'HelloWorld',
-    component: HelloWorld,
-    meta: {
-      title: '首页'
+    path:'/',
+    redirect:{
+      name: 'HelloWorld'
     }
   }]
 }
@@ -41,7 +39,6 @@ export function createRouter() {
     // 用于区分客户端和服务端的，服务端是没有window，document对象
     if(typeof document !=='undefined'){
       document.title = to.meta.title
-      console.log(to,document)
     }
   })
   /**
