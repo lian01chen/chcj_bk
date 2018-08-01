@@ -11,12 +11,14 @@ app.get('/', (req, res, next) => {
       }
       var $ = cheerio.load(sres.text)
       var items = []
+      var userList = $('.cell .user_avatar img')
       $('#topic_list .topic_title').each((index,item)=>{
         let $ele = $(item)
+        let name = $(userList[index]).attr('title')
         items.push({
           title:$ele.attr('title'),
           href:$ele.attr('href'),
-          author :$ele
+          author :name
         })
       })
       res.send(items)
