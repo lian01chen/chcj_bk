@@ -1,0 +1,27 @@
+<h1> {{ title }} </h1>
+<ul class="archive">
+  <table>
+    <tr>
+      <th>title</th>
+      <th>href</th>
+      <th>comment1</th>
+      <th>author</th>
+      <th>score1</th>
+    </tr>
+    {{#each posts}}
+      <tr>
+        <td> {{ this.title }} </td>
+        <td> {{ this.href }} </td>
+        <td> {{ this.comment1 }} </td>
+        <td> {{ this.author }} </td>
+        <td> {{ this.score1 }} </td>
+      </tr>
+    {{/each}}
+  </table>
+</ul>
+<style>
+  td,th{
+    border:1px solid black;
+    text-align: center;
+  }
+</style>
