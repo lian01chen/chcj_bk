@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>transition</title>
+  <style>
+    body{
+      margin: 0 auto;
+      padding: 0;
+    }
+    .img-list{
+      display:flex;
+      margin:10px;
+      -webkit-padding-start: 0!important;
+    }
+    .img-item{
+      list-style: none;
+      margin: 0 20px;
+
+    }
+    .img-item:last-child{
+      padding-right: 20px;
+    }
+    .hotel{
+      width:100%;
+      height:160px;
+      background-color:chocolate;
+      text-align: center;
+      margin-bottom: 20px;
+      position: relative;
+      display: none;
+    }
+    .hotel-title{
+      height: 40px;
+      line-height: 40px;
+      padding-left: 30px;
+    }
+    .hotel-img{
+      text-align: center;
+    }
+    .placeholder{
+      width:100%;
+      height: 200px;
+      line-height: 200px;
+      text-align: center;
+      background-color: #00b0f5;
+      position:relative;
+    }
+
+    @keyframes mymove
+    {
+      0% {left:375px;}/*初始状态 透明度为0*/
+      40% {left:375px}/*过渡状态 透明度为0*/
+      100% {left: 0px;}/*结束状态 透明度为1*/
+    }
+    @-webkit-keyframes mymove /*Safari and Chrome*/
+    {
+      /*0% {opacity: 0;}!*初始状态 透明度为0*!*/
+      /*40% {opacity: 0;}!*过渡状态 透明度为0*!*/
+      /*100% {opacity: 1;}!*结束状态 透明度为1*!s*/
+    }
+    .hotel-display{
+      display: block;
+      animation:mymove 3s ease-in;
+      -webkit-animation:mymove 3s ease-in;
+      animation-delay: 3s;
+    }
+    @keyframes placeholderMove {
+      0% {top:0px}/*初始状态 透明度为0*/
+      40% {top:0px}/*过渡状态 透明度为0*/
+      100% {top: 160px;}/*结束状态 透明度为1*/
+    }
+    .placeholder-display{
+      -webkit-animation: placeholderMove 3s ease-in;
+      -o-animation: placeholderMove 3s ease-in;
+      animation: placeholderMove 3s ease-in;
+    }
+  </style>
+</head>
+<body>
+<section class="wrap">
+  <div class="title">
+    <span class="left">低价灵感</span>
+    <span class="right">优雅的营销文案</span>
+  </div>
+  <ul class="img-list">
+    <li class="img-item"><img src="http://temp.im/200x120/ccc" alt="1"></li>
+    <li class="img-item"><img src="http://temp.im/200x120/ccc" alt="2"></li>
+    <li class="img-item"><img src="http://temp.im/200x120/ccc" alt="3"></li>
+  </ul>
+</section>
+<section class="hotel">
+  <div class="hotel-title">航空公司特价</div>
+  <img class="hotel-img" src="http://temp.im/200x120/ccc" alt="sss">
+</section>
+<section class="placeholder">
+  下边缘占位
+</section>
+
+<button onClick="showHotel()" class="button">click me</button>
+
+</body>
+<script>
+  function showHotel(){
+    alert(2)
+    let dom = document.querySelector('.hotel')
+    console.log(dom)
+    // dom.style.display = 'block'
+    dom.classList.add('hotel-display')
+    let dom2 = document.querySelector('.placeholder')
+    dom2.classList.add('placeholder-display')
+  }
+</script>
+</html>
