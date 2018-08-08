@@ -13,6 +13,7 @@
       display:flex;
       margin:10px;
       -webkit-padding-start: 0!important;
+      overflow-x: scroll;
     }
     .img-item{
       list-style: none;
@@ -51,22 +52,26 @@
     @keyframes mymove
     {
       0% {left:375px;}/*初始状态 透明度为0*/
-      40% {left:375px}/*过渡状态 透明度为0*/
+      40% {left:375px;}/*过渡状态 透明度为0*/
       100% {left: 0px;}/*结束状态 透明度为1*/
     }
     @-webkit-keyframes mymove /*Safari and Chrome*/
     {
-      /*0% {opacity: 0;}!*初始状态 透明度为0*!*/
-      /*40% {opacity: 0;}!*过渡状态 透明度为0*!*/
-      /*100% {opacity: 1;}!*结束状态 透明度为1*!s*/
+      0% {left:375px;}/*初始状态 透明度为0*/
+      40% {left:375px;}/*过渡状态 透明度为0*/
+      100% {left: 0px;}/*结束状态 透明度为1*/
     }
     .hotel-display{
-      display: block;
-      animation:mymove 3s ease-in;
-      -webkit-animation:mymove 3s ease-in;
-      animation-delay: 3s;
+      -webkit-animation: mymove 3s ease-in;
+      -o-animation: mymove 3s ease-in;
+      animation: mymove 3s ease-in;
     }
     @keyframes placeholderMove {
+      0% {top:0px}/*初始状态 透明度为0*/
+      40% {top:0px}/*过渡状态 透明度为0*/
+      100% {top: 160px;}/*结束状态 透明度为1*/
+    }
+    @-webkit-keyframes placeholderMove {
       0% {top:0px}/*初始状态 透明度为0*/
       40% {top:0px}/*过渡状态 透明度为0*/
       100% {top: 160px;}/*结束状态 透明度为1*/
@@ -98,18 +103,19 @@
   下边缘占位
 </section>
 
-<button onClick="showHotel()" class="button">click me</button>
+<!--<button onClick="showHotel()" class="button">click me</button>-->
 
 </body>
 <script>
   function showHotel(){
-    alert(2)
     let dom = document.querySelector('.hotel')
-    console.log(dom)
-    // dom.style.display = 'block'
     dom.classList.add('hotel-display')
     let dom2 = document.querySelector('.placeholder')
     dom2.classList.add('placeholder-display')
+    setTimeout(()=>{
+      dom.style.display = 'block'
+    },3000)
   }
+  window.onload = showHotel // 页面加载完成自动触发动画
 </script>
 </html>
