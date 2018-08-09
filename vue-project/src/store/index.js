@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import foo from './modules/foo'
 
 let state = {
   items:{}
@@ -33,11 +34,14 @@ let mutations = {
 //   mutations,
 // }
 Vue.use(Vuex)
-export default function () {
+export function createStore () {
   return new Vuex.Store({
     state,
     getters,
-    actions,
-    mutations,
+    actions:Object.assign({},actions,foo.actions),
+    mutations:Object.assign({},mutations,foo.mutations),
+    // modules:{
+    //   foo
+    // }
   })
 }

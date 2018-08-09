@@ -11,25 +11,56 @@
       </div>
     </div>
     <div><label for="home-data">home-page-data<input type="text" id="home-data" v-model="textStr"></label></div>
+    <div>foo/inc/count : {{ fooCount }}</div>
+    <button @click="add"> count ++ </button>
   </div>
 </template>
 
 <script>
+  import fooStoreModule from '../store/modules/foo.js'
+  import { mapActions } from 'vuex'
+  import * as types from '../store/types'
   export default {
     name: 'App',
+    asyncData({ store }){
+      store.registerModule('foo',fooStoreModule)
+      // TODO 解释：registerModule 只会注册state，而store中的actions，mutations等字段不会被注册？
+      return store.dispatch('incAction')
+    },
     data() {
       return {
-        customerName: '100003 广州市万荣商贸有限公司广州分公司',
+        customerName: '100003 ',
         textStr: this.inputMsg
       }
     },
+    computed:{
+      fooCount(){
+        return this.$store.state.foo.count
+      }
+    },
     props: ['inputMsg'],
+    created(){
+      // TODO 注意看count值的变化，created生命周期在客户端和服务端都会执行，这里都值会增加2
+      // this.$store.dispatch(types.INC_ACTION)
+      // this.$store.commit('INC_COUNTS')
+    },
+    mounted(){
+      this.$store.dispatch(types.INC_ACTION)
+    },
     methods: {
+      ...mapActions({
+        addAction:'incAction'
+      }),
       goHome() {
         this.$router.push({
           path: '/home',
           query: {'aa': 1}
         })
+      },
+      add(){
+        this.addAction()
+        // this.$store.dispatch(types.INC_ACTION)
+        // this.$store.commit('INC_COUNTS')
       }
     }
   }

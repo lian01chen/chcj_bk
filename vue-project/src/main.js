@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import { createRouter } from './router'
 import Focus from './directive/focus'
-import createStore  from './store'
+import { createStore }  from './store'
 import { sync } from 'vuex-router-sync'
 
 Vue.config.productionTip = false

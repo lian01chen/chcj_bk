@@ -80,7 +80,7 @@
         </a>
       </li>
     </ul>
-    <flex :inputMsg="msg"></flex>
+    <!--<flex :inputMsg="msg"></flex>-->
     <router-link to="flex">go to flex</router-link>
     <div>this is a vue-ssr demo app</div>
   </div>
