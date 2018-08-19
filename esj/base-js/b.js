@@ -91,3 +91,42 @@ for(let i = 0;i<4;i++){
 }
 //这个是有作用域的，在for之外，if,for都会造成块级作用域
 console.log(i,v)
+
+
+let arr = [1,1,2,3,4,4,5,6,6]
+/**
+ * 方法一，使用set数据结构实现
+ * 去除数组中的重复元素
+ * @param {arr} array 
+ */
+function deleteDuOne(array){ 
+  return Array.from(new Set(array))
+}
+/**
+ * 利用一遍遍历的方式实现有序数组的去重
+ * @param {arr} array 
+ */
+function deleteDuTwo(array){
+  let arr = []
+  let item = null
+  array.forEach(element => {
+    if(item !== element){
+      arr.push(element)
+      item = element
+    }
+  })
+  return arr
+}
+/**
+ * 利用array中indexOf的api来实现
+ * @param {arr} array 
+ */
+function deleteDuThree(array){
+  let arr = []
+  array.forEach(item=>{
+    if(arr.indexOf(item)===-1){
+      arr.push(item)
+    }
+  })
+  return arr
+}
