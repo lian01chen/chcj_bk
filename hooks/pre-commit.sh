@@ -3,7 +3,8 @@
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
 PRO_PATH=${SHELL_FOLDER/\/hooks/}
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E ".html$|.vue$|.js$|.css$")
-if [[ "$STAGED_FILES"=="" ]]; then
+
+if [[ "$STAGED_FILES" = "" ]]; then
   exit 0
 fi
 
