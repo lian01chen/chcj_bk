@@ -1,17 +1,17 @@
 #!/bin/sh
 
-SHELL_FOLDER = $(cd "$(dirname "$0")";pwd)
-PRO_PATH = ${SHELL_FOLDER/\/hooks/}
-STAGED_FILES = $(git diff --cached --name-only --diff-filter=ACM | grep -E ".html$|.vue$|.js$|.css$")
-if [[ "$STAGED_FILES" = "" ]]; then
+SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
+PRO_PATH=${SHELL_FOLDER/\/hooks/}
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E ".html$|.vue$|.js$|.css$")
+if [[ "$STAGED_FILES"=="" ]]; then
   exit 0
 fi
 
-PASS = true
+PASS=true
 
 # Check for eslint
 # Which eslint &> /dev/null
-# if [[ "$?" ==0]]; then
+# if [[ "$?"==0]]; then
 if [[ ! -f $PRO_PATH/node_modules/eslint/bin/eslint.js ]]; then
   echo "please install Eslint"
   exit 1
@@ -25,7 +25,7 @@ do
     echo "Eslint Passed: $FILE"
   else
     echo "Eslint Failed: $FILE"
-    PASS = false
+    PASS=false
   fi
 done
 
