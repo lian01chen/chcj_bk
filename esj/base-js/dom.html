@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <dvi>div1</dvi>
+</body>
+<script>
+  // create a new element and append to a element
+  /**
+   * @params targetEle { String }  要创建的元素
+   * @params appendEle { String }  需要被添加到的位置
+   * @params params { Object }  需要初始化的属性
+   */
+  function createElement(targetEle, appendEle,params){
+    let dom = document.createElement(targetEle)
+    for(let key in params){
+      dom.setAttribute(key,params[key]) // 给元素添加属性，比如可以添加id
+    }
+    dom.async = true
+    document.querySelector(appendEle).appendChild(dom)
+  }
+</script>
+</html>
