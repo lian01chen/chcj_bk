@@ -1,0 +1,29 @@
+{
+  "name": "chcj_bk",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "dependencies": {
+    "pre-commit": "^1.2.2"
+  },
+  "devDependencies": {
+    "shelljs": "^0.8.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "node ./hooks/pre-commit.js"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lian01chen/chcj_bk.git"
+  },
+  "author": "lian01.chen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lian01chen/chcj_bk/issues"
+  },
+  "homepage": "https://github.com/lian01chen/chcj_bk#readme"
+}
