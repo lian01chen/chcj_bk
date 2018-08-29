@@ -1,0 +1,92 @@
+# 代码规范
+良好的代码规范有利于项目维护和新人上手，一下把所有的代码都改造是不可能，要改的地方太多，所以要保证后来提交代码的质量。
+###使用eslint + git pre-commit
+
+pre-commit是git的钩子，顾名思义就是在提交前运行，所以一般用于代码检查、单元测试。git还有其他钩子，比如prepare-commit-msg、pre-push等，具体可查看[git官网](https://git-scm.com/docs/githooks)。
+git 钩子目录在.git/hooks下(如下图):<br/>
+![git-hooks.png](https://upload-images.jianshu.io/upload_images/4928078-3e45a2c94dc9fcd8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/242/format/webp)
+
+----
+###具体实现
+ - ####安装pre-commit<br/>
+  npm install pre-commit --save-dev <br/>
+  ####安装shelljs<br/>
+  npm install pre-commit --save-dev <br/>
+  ####安装eslint依赖包
+ - ####配置package.json<br/>
+ ```js
+   "scripts": {
+       "lint": "node ./hooks/pre-commit.js"
+     },
+     "pre-commit": [
+       "lint"
+     ],
+ ```
+ - ####新建hook文件夹，里面包含pre-commit.js和pre-commit.sh
+
+
+
+----
+#mock开发
+拦截请求，返回mock的接口数据<br/>
+
+方案：
+- 自己开发，基于mock.js
+
+- 使用工具[YApi](https://yapi.ymfe.org/index.html)<br/>
+
+
+
+
+
+----
+#flex布局
+###flex布局是什么
+Flex是Flexible Box的缩写，意为”弹性布局”<br/>
+任何容器都可以指定为flex布局 &npbs display:flex
+###基本概念
+采用Flex布局的元素，称为Flex容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为Flex项目（flex item），简称”项目”。<br/>
+容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。
+
+----
+###容器属性
+- flex-direction：主轴的方向,取值：row | row-reverse | column | column-reverse  <br/>
+    - row（默认值）：主轴为水平方向，起点在左端。
+    - row-reverse：主轴为水平方向，起点在右端。
+    - column：主轴为垂直方向，起点在上沿。
+    - column-reverse：主轴为垂直方向，起点在下沿。
+- flex-wrap：如果一条轴线排不下，如何换行，取值：nowrap | wrap | wrap-reverse
+    - nowrap（默认）：不换行。
+    - wrap：换行，第一行在上方。
+    - wrap-reverse：换行，第一行在下方。
+- flex-flow：是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。
+    - flex-flow: <flex-direction> || <flex-wrap>;
+- justify-content：项目在主轴上的对齐方式，取值：flex-start | flex-end | center | space-between | space-around
+    - flex-start（默认值）：左对齐
+    - flex-end：右对齐
+    - center： 居中
+    - space-between：两端对齐，项目之间的间隔都相等。
+    - space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。
+- align-items：项目在交叉轴上如何对齐，取值：flex-start | flex-end | center | baseline | stretch
+   - flex-start：交叉轴的起点对齐。
+   - flex-end：交叉轴的终点对齐。
+   - center：交叉轴的中点对齐。
+   - baseline: 项目的第一行文字的基线对齐。
+   - stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。
+- align-content：多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。取值：flex-start | flex-end | center | space-between | space-around | stretch
+   - flex-start：与交叉轴的起点对齐。
+   - flex-end：与交叉轴的终点对齐。
+   - center：与交叉轴的中点对齐。
+   - space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。
+   - space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
+   - stretch（默认值）：轴线占满整个交叉轴。
+
+----
+###项目的属性
+- order
+- flex-grow
+- flex-shrink
+- flex-basis
+- flex
+- align-self
+
