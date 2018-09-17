@@ -1,5 +1,6 @@
 const Layer = require('./layer')
 const http = require('http')
+
 function Route (path) {
   this.path = path
   this.stack = []
@@ -37,17 +38,50 @@ http.METHODS.forEach(function (method) {
 
 /**
  * handle request
+ * 内部逻辑跳转
  * @param req
  * @param res
  * @return {*|void}
  */
-Route.prototype.dispatch = function (req, res) {
+Route.prototype.dispatch = function (req, res, done) {
   let self = this
     , method = req.method.toLowerCase()
-  for (let i = 0, len = self.stack.length; i < len; i++) {
-    if (method === self.stack[i].method) {
-      return self.stack[i].handle_requestss(req, res)
+    , idx = 0
+    , stack = self.stack
+
+  function next (err) {
+    // next
+    if (err && err === 'route') {
+      return done()
+    }
+
+    // next to end
+    if (err && err === 'router') {
+      return done(err)
+    }
+
+    //
+    if (idx >= stack.length) {
+      return done(err)
+    }
+
+    let layer = stack[idx++]
+    if (method !== layer.method) {
+      return next(err)
+    }
+
+    if (err) {
+      layer.handle_errors(err,req,res,next)
+    } else {
+      layer.handle_requestss(req, res, next)
     }
   }
+
+  // for (let i = 0, len = self.stack.length; i < len; i++) {
+  //   if (method === self.stack[i].method) {
+  //     return self.stack[i].handle_requestss(req, res)
+  //   }
+  // }
+  next()
 }
 exports = module.exports = Route

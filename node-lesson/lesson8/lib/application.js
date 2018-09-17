@@ -27,8 +27,18 @@ Application.prototype.handle = function(req, res) {
     }
   }
 
+  let done = function finalhandlers(err){
+    res.writeHead(404,{'Content-Type':'text/plain'})
+    if(err){
+      res.end('404:'+err)
+    }else{
+      let msg = 'Cannot ' +req.method +' '+ req.url
+      res.end(msg)
+    }
+  }
+
   var router = this._router
-  router.handles(req, res)
+  router.handles(req, res,done)
 }
 
 http.METHODS.forEach(function(method) {

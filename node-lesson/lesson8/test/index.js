@@ -1,14 +1,18 @@
-const expross = require('../')
-const app = expross()
-console.log(app)
+var expross = require('../')
+var app = expross()
 
-app.get('/', function (req, res) {
-  res.send('get hello world')
+app.get('/', function(req, res, next) {
+  next()
 })
 
-// app.post('/',(req,res)=>{
-//   res.send('put hello world')
-// })
-app.listen(3000, function (req,res) {
+  .get('/', function (req, res, next) {
+    next(new Error('error'))
+  })
+
+  .get('/', function(req, res) {
+    res.send('third')
+  })
+
+app.listen(3000, function() {
   console.log('Example app listening on port 3000!')
 })
