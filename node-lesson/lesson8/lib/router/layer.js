@@ -4,7 +4,7 @@ function Layer (path,fn){
   this.path = path
 }
 
-Layer.prototype.handle_request = function(req,res){
+Layer.prototype.handle_requestss = function(req,res){
   var fn = this.handle
   if(fn){
     fn(req,res)

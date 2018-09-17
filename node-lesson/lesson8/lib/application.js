@@ -1,42 +1,42 @@
-const http = require('http')
-// var router = [{
-//   path:'*'
-//   ,method:'*'
-//   ,handle:function(req,res){
-//     res.writeHead(200,{'Content-Type':'text/plain'})
-//     res.end('404')
-//   }
-// }]
 const Router = require('./router')
-exports = module.exports =  {
-  _router: new Router(),
-  get:function(path,fn){
-    // router.push({
-    //   path:path
-    //   ,method:'GET'
-    //   ,handle:fn
-    // })
-    return this._router.get(path,fn)
-  },
-  listen:function(port,cb){
-    var self = this
-    var server = http.createServer(function(req, res) {
-      if(!res.send){ // 没有默认的send方法
-        res.send = function(body){
-          res.writeHead(200, {'Content-Type':'text/plain'})
-          res.end(body)
-        }
-      }
-      // for(var i=1,len=router.length;i<len;i++){
-      //   if((req.url === router[i].path || router[i].path === '*') &&
-      //       (req.method === router[i].method || router[i].method === '*')){
-      //     return router[i].handle && router[i].handle(req,res)
-      //   }
-      // }
+const http  = require('http')
 
-      return self._router.handle(req,res)
-    })
-    return server.listen.apply(server,arguments)
-  }
+function Application() {
+  this._router = new Router()
 }
 
+
+Application.prototype.listen = function(port, cb) {
+  var self = this
+
+  var server = http.createServer(function(req, res) {
+    self.handle(req, res)
+  })
+
+  return server.listen.apply(server, arguments)
+}
+
+
+Application.prototype.handle = function(req, res) {
+  if(!res.send) {
+    res.send = function(body) {
+      res.writeHead(200, {
+        'Content-Type': 'text/plain'
+      })
+      res.end(body)
+    }
+  }
+
+  var router = this._router
+  router.handles(req, res)
+}
+
+http.METHODS.forEach(function(method) {
+  method = method.toLowerCase()
+  Application.prototype[method] = function(path, fn) {
+    this._router[method].apply(this._router, arguments)
+    return this
+  }
+})
+
+exports = module.exports = Application

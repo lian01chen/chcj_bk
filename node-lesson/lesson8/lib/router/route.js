@@ -1,5 +1,5 @@
 const Layer = require('./layer')
-
+const http = require('http')
 function Route (path) {
   this.path = path
   this.stack = []
@@ -12,7 +12,7 @@ function Route (path) {
  * @return {boolean}
  * @private
  */
-Route.prototype._handles_method = function (method) {
+Route.prototype._handles_methods = function (method) {
   var name = method.toLowerCase()
   return Boolean(this.methods[name])
 }
@@ -22,15 +22,18 @@ Route.prototype._handles_method = function (method) {
  * @param fn
  * @return {Route}
  */
-Route.prototype.get = function (fn) {
-  var layer = new Layer('/', fn)
-  layer.name = 'get'
+http.METHODS.forEach(function (method) {
+  method = method.toLowerCase()
+  Route.prototype[method] = function (fn) {
+    var layer = new Layer('/', fn)
+    layer.method = method
 
-  this.methods['get'] = true
-  this.stack.push(layer)
+    this.methods[method] = true
+    this.stack.push(layer)
 
-  return this
-}
+    return this
+  }
+})
 
 /**
  * handle request
@@ -43,7 +46,7 @@ Route.prototype.dispatch = function (req, res) {
     , method = req.method.toLowerCase()
   for (let i = 0, len = self.stack.length; i < len; i++) {
     if (method === self.stack[i].method) {
-      return self.stack[i].handle_request(req, res)
+      return self.stack[i].handle_requestss(req, res)
     }
   }
 }
