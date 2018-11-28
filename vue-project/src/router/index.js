@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '../components/HelloWorld'
 import Flex from '../views/Flex.vue'
+import PageA from '../views/PageA.vue'
 
 Vue.use(Router)
 
@@ -19,6 +20,11 @@ const routeParams = {
     name: 'Flex',
     component: Flex,
     meta: {title: 'flex test'}
+  }, {
+    path: '/lottery',
+    name: 'PageA',
+    component: PageA,
+    meta: {title: 'lottery test'}
   }
   ]
 }
