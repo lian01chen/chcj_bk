@@ -6,6 +6,7 @@
         <span>{{prize}}个</span>
         <span>加速包</span>
       </li>
+      <div class="clearfix"></div>
     </ul>
     <button @click="lottery" class="start-lottery">start lottery</button>
   </section>
@@ -22,24 +23,24 @@
         cycle: 20, // 至少跳动的次数
         timer: null,
         speedData: 300,
-        activeIndex:-1,
-        lock:false
+        activeIndex: -1,
+        lock: false
       }
     },
     methods: {
-      lottery(){
-        if(this.lock) return
+      lottery () {
+        if (this.lock) return
         this.lock = true
         this.roll()
       },
       roll () {
         this.times += 1
-        this.activeIndex +=1
-        if(this.activeIndex > 5){
+        this.activeIndex += 1
+        if (this.activeIndex > 5) {
           this.activeIndex = 0
         }
         // eslint-disable-next-line
-        console.log('--->',this.times,this.cycle,'-->',this.prizeIndex,this.activeIndex,this.speedData)
+        console.log('--->', this.times, this.cycle, '-->', this.prizeIndex, this.activeIndex, this.speedData)
         if (this.times > this.cycle + 10 && this.prizeIndex === this.activeIndex) {
           // todo 满足停止条件
           this.speedData = 300
@@ -63,10 +64,12 @@
           if (this.speedData < 80) {
             this.speedData = 80
           }
-          if(this.speedData > 400){
+          if (this.speedData > 400) {
             this.speedData = 400
           }
-          this.timer = setTimeout(() => {this.roll()}, this.speedData)
+          this.timer = setTimeout(() => {
+            this.roll()
+          }, this.speedData)
         }
         return false
       },
@@ -91,12 +94,15 @@
     li {
       list-style: none;
     }
-    ul{
+    ul {
       margin: 0;
       padding: 0;
     }
     .lottery-square {
-      /*clear:both; height: 0; line-height: 0; font-size: 0;*/
+      /**
+        overflow: auto;
+        zoom: 1;
+      **/
       width: 300px;
       margin: 0 auto;
       .prize-item {
@@ -119,15 +125,22 @@
         background-color: #79f2a5;
       }
     }
-    .lottery-square {zoom:1;}    /*==for IE6/7 Maxthon2==*/
-    .lottery-square::after {clear:both;content:'.';display:block;width: 0;height: 0;visibility:hidden;}/*==for FF/chrome/opera/IE8==*/
-    .start-lottery{
+    /*.lottery-square {zoom:1;}    !*==for IE6/7 Maxthon2==*!*/
+    /*.lottery-square::after {clear:both;content:'.';display:block;width: 0;height: 0;visibility:hidden;}!*==for FF/chrome/opera/IE8==*!*/
+    .clearfix {
+      clear: both;
+      zoom: 1;
+      height: 0;
+      line-height: 0;
+      font-size: 0;
+    }
+    .start-lottery {
       margin-top: 20px;
-      width:200px;
+      width: 200px;
       height: 40px;
       font-size: 20px;
       background: #28a745;
-      color:#fff;
+      color: #fff;
       border-radius: 5px;
       cursor: pointer;
     }
