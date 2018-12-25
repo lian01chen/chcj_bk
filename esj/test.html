@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div onclick="test">test</div>
+<div onclick="test()">test()</div>
+<div id="app">
+  ======{{message}}======
+  <div @click="testVue">vue-test</div>
+  <div @click="testVue()">vue-test()</div>
+</div>
+</body>
+<script>
+  function test () {
+    console.log(1111) // eslint-disable-line
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  /**
+   *  注意同样的click事件，原生处理的方式和vue是不一样的，
+   *  vue中@click会默认去注册事件，当监听到click事件时就会去执行相应的事件
+   * @type {Vue}
+   */
+  new Vue({
+    el: '#app',
+    data: {
+      message: 'this is test msg'
+    },
+    methods: {
+      testVue () {
+        console.log(222) // eslint-disable-line
+      }
+    }
+  })
+</script>
+</html>
