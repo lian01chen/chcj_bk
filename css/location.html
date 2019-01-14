@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>event location</title>
+</head>
+
+<body style="margin:0px;padding:0px;">
+  <div style="width:800px;height:600px;border:10px solid green;background-color: hotpink;font-size:40px;text-align: center;">800*600
+    <div style="width: 600px;margin-left:200px;height: 100px;background-color: red;text-align: center;position: fixed;">100*100
+      <span style="background-color:greenyellow;">test
+        <span style="background-color:grey;">inline-child </span>
+      </span>
+    </div>
+  </div>
+
+</body>
+<script>
+  /**
+   * 打印点击事件的位置信息 
+  **/
+  function print(e) {
+    let arr = ['page', 'client', 'offset', 'layer', 'screen', '']
+    let obj = {}
+    for (let key of arr) {
+      let keyX = key ? key + 'X' : 'x'
+      let keyY = key ? key + 'Y' : 'y'
+      obj[keyX] = e[keyX]
+      obj[keyY] = e[keyY]
+    }
+    console.log(obj)
+  }
+  /**
+   * 得出如下结论：（以下结论均是chrome浏览器下获得，其他浏览器差异性暂未验证）
+   * 1. screenX/screenY属性是针对【物理显示屏幕】的，即点击位置距离屏幕左上角的位置
+   * 2. clientX/clientY,x/y 这两个属性是针对页面展示，始终是页面可是部分，有点fixed味道，即点击位置距离【屏幕可视左上角】
+   * 3. offsetX/offsetY 这对属性是点击位置相对于元素自身的偏移位置，如果是行内元素，则偏移量还是针对父元素。注意这部分不会把border算在内，
+   * 所以当设置了border并且点击到border上时，会有负值。【可能Safari浏览器boder计算除外】
+   * 4. pageX/pageY 这对属性表示点击位置相对于文档的左上角偏移，包含页面滚动导致的不可见部分的偏移。
+   * 5. layerX/layerY 这对属性，表示点击位置相对于position不是static的父元素的左上角。可以理解这对属性是针对position非static定位的偏移。
+   **/
+  document.addEventListener('click', print, false)
+
+</script>
+
+</html>
