@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '../components/HelloWorld'
 import Flex from '../views/Flex.vue'
 import PageA from '../views/PageA.vue'
+import Swiper from '../views/Swiper.vue'
 
 Vue.use(Router)
 
@@ -19,14 +20,24 @@ const routeParams = {
     path: '/flex',
     name: 'Flex',
     component: Flex,
-    meta: {title: 'flex test'}
+    meta: {
+      title: 'flex test'
+    }
   }, {
     path: '/lottery',
     name: 'PageA',
     component: PageA,
-    meta: {title: 'lottery test'}
-  }
-  ]
+    meta: {
+      title: 'lottery test'
+    }
+  }, {
+    path: '/swiper',
+    name: 'Swiper',
+    component: Swiper,
+    meta: {
+      title: 'swiper test'
+    }
+  }]
 }
 const router = new Router(routeParams)
 
@@ -53,4 +64,3 @@ router.beforeEach((to, from, next) => {
 })
 
 export default router
-
