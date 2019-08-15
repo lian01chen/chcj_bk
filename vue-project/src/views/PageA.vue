@@ -2,6 +2,7 @@
   <div>
     lottery test
     <Lottery></Lottery>
+    <img src="../assets/banner-test.png" alt="" srcset="">
   </div>
 </template>
 

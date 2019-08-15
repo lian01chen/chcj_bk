@@ -49,17 +49,17 @@ export default {
              * 这个事件当手不离开屏时，貌似不会触发
              */
           slideChangeTransitionStart:()=>{
-            console.log(this.swiper,'slideChangeTransitionStart')
+            // console.log(this.swiper,'slideChangeTransitionStart')
           },
           slideChangeTransitionEnd: ()=>{
-            console.log(this.swiper,'slideChangeTransitionEnd')
+            // console.log(this.swiper,'slideChangeTransitionEnd')
             // console.log(this.activeIndex);//切换结束时，告诉我现在是第几个slide
           },
           click:()=>{
-            console.log(this.swiper,'click')
+            // console.log(this.swiper,'click')
           },
           slideChange:()=>{
-            console.log(this.swiper,'slidechange')
+            // console.log(this.swiper,'slidechange')
           }
         },
       }
@@ -82,7 +82,7 @@ export default {
     // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
     // console.log('this is current swiper instance object', this.swiper)
     // this.swiper.slideTo(3, 1000, false)
-    console.log('mounted',this.swiper)
+    // console.log('mounted',this.swiper)
   }
 }
 </script>

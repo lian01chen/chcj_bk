@@ -54,6 +54,7 @@
       </li>
     </ul>
     <base-image-input v-model="imageFile" />
+    <img src="../assets/logo.png" alt="2222">
   </div>
 </template>
 
@@ -69,6 +70,8 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       imageFile:null
     }
+  },
+  created(){
   }
 }
 </script>

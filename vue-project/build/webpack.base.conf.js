@@ -5,7 +5,7 @@ const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
@@ -24,11 +24,11 @@ module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js',
-    another:'./src/another-module.js'
+    another: './src/another-module.js'
   },
-  plugins:[
+  plugins: [
     new HTMLWebpackPlugin({
-      title:'Code Spliting'
+      title: 'Code Spliting'
     })
   ],
   output: {
